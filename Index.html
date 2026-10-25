@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 10px 30px #22222240;
+        }
+
+        h1 {
+            color: #5145cd;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button, .download {
+            display: inline-block;
+            width: 100%;
+            padding: 13px;
+            margin-top: 12px;
+            background: #5145cd;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button:hover, .download:hover {
+            background: #372da5;
+        }
+
+        #home {
+            display: none;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #666666;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="login">
+        <h1>Welcome!</h1>
+        <p>Login to my personal website</p>
+
+        <form id="loginForm">
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter your name"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter demo password"
+                required
+            >
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="note">
+            Demo website: use any name and a password of your choice.
+        </p>
+    </div>
+
+    <div class="container" id="home">
+        <h1 id="welcomeName">Welcome!</h1>
+
+        <p>You have successfully logged in.</p>
+        <p>Welcome to my personal website!</p>
+
+        <a
+            class="download"
+            href="data:text/plain;charset=utf-8,Welcome%20to%20my%20website!"
+            download="my-website-note.txt"
+        >
+            Download File
+        </a>
+
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+
+            if (name === "" || password === "") {
+                alert("Please enter your name and password.");
+                return;
+            }
+
+            document.getElementById("welcomeName").textContent =
+                "Welcome, " + name + "!";
+
+            document.getElementById("login").style.display = "none";
+            document.getElementById("home").style.display = "block";
+        });
+
+        function logout() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("login").style.display = "block";
+            loginForm.reset();
+        }
+    </script>
+
+</body>
+</html>
